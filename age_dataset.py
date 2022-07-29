@@ -22,8 +22,8 @@ class AgeDataset(Dataset):
             # transforms.Resize(128)
         ])
         ages = os.listdir(self.img_dir)
-        self.image_list = {}
-        self.age_list = {}
+        self.image_list = []
+        self.age_list = []
         i = 0
         for age in ages:
             images = os.listdir(self.img_dir+"/"+age)
