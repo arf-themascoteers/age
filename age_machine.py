@@ -7,14 +7,20 @@ class TocMachine(nn.Module):
         super().__init__()
         self.machine = nn.Sequential(
             nn.Conv2d(3, 16, (16,16)),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=(4, 4)),
+            nn.BatchNorm2d(16),
+            nn.LeakyReLU(0.2),
+            nn.MaxPool2d(kernel_size=(2, 2)),
             nn.Conv2d(16, 32, (8, 8)),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=(4, 4)),
+            nn.BatchNorm2d(32),
+            nn.LeakyReLU(0.2),
+            nn.MaxPool2d(kernel_size=(2, 2)),
+            nn.Conv2d(32, 64, (4, 4)),
+            nn.LeakyReLU(0.2),
+            nn.MaxPool2d(kernel_size=(2, 2)),
             nn.Flatten(),
-            nn.Linear(2592, 16),
-            nn.ReLU(),
+            nn.Dropout(),
+            nn.Linear(23104, 16),
+            nn.LeakyReLU(0.2),
             nn.Linear(16, 1)
         )
 
