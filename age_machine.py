@@ -11,7 +11,8 @@ class TocMachine(nn.Module):
             nn.Linear(number_input, 256),
             nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Linear(256, 1)
+            nn.Linear(256, 1),
+            nn.Sigmoid()
         )
 
         for param in self.resnet.layer1.parameters():
