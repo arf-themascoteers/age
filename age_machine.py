@@ -2,6 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 
+
 class AgeMachine(nn.Module):
     def __init__(self):
         super().__init__()
