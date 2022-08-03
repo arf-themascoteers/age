@@ -4,13 +4,13 @@ from age_dataset import AgeDataset
 import torchvision
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from age_machine import TocMachine
+from age_machine import AgeMachine
 
 def train(device):
     batch_size = 500
     cid = AgeDataset(is_train=True)
     dataloader = DataLoader(cid, batch_size=batch_size, shuffle=True)
-    model = TocMachine()
+    model = AgeMachine()
     model.train()
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)

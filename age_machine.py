@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 
-class TocMachine(nn.Module):
+class AgeMachine(nn.Module):
     def __init__(self):
         super().__init__()
         self.resnet = torchvision.models.resnet18(pretrained=True)
