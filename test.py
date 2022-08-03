@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 def test(device):
     batch_size = 100
     cid = AgeDataset(is_train=False)
-    dataloader = DataLoader(cid, batch_size=batch_size, shuffle=False)
+    dataloader = DataLoader(cid, batch_size=batch_size, shuffle=True)
     criterion = torch.nn.MSELoss(reduction='mean')
     model = torch.load("models/machine.h5")
     model.eval()
@@ -30,13 +30,15 @@ def test(device):
         for i in range(y_hat.shape[0]):
             results.append((y[i].item(), y_hat[i].item()))
 
-    results.sort()
     gt2 = [i[0] for i in results]
     hat2 = [i[1] for i in results]
     gt = cid.unscale(gt2)
     hat= cid.unscale(hat2)
+    print(f"Actual Age\t\t\tPredicted Age")
     for i in range(len(gt)):
-        print(f"{gt[i]:.1f}\t\t\t\t{hat[i]:.1f}")
+        actual = f"{gt[i]:.1f}".ljust(20)
+        predicted = f"{hat[i]:.1f}".ljust(20)
+        print(f"{actual}{predicted}")
 
     loss_cum = loss_cum / itr
     print(f"Loss {loss_cum:.2f}")
